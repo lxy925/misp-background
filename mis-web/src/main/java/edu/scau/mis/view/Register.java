@@ -4,14 +4,12 @@ import edu.scau.mis.pos.domain.Product;
 import edu.scau.mis.pos.domain.Sale;
 import edu.scau.mis.pos.domain.SaleItem;
 import edu.scau.mis.pos.mapper.IProductMapper;
-import edu.scau.mis.pos.mapper.ProductCatalog;
 import edu.scau.mis.pos.service.ISaleService;
 import edu.scau.mis.view.vo.SaleItemVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

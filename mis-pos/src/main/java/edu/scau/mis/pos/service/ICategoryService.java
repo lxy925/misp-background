@@ -24,4 +24,14 @@ public interface ICategoryService {
      */
 
     List<CategoryTreeNode> getCategoriesTree();
+
+    List<Category> selectCategoryList(Category category);
+
+    int insertCategory(Category category);
+
+    int updateCategory(Category category);
+
+    int deleteCategoryById(Long categoryId);
+
+    int deleteCategoryByIds(Long[] categoryIds);
 }

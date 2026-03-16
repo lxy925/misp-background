@@ -5,7 +5,6 @@ import edu.scau.mis.pos.domain.CategoryTreeNode;
 import edu.scau.mis.pos.mapper.ICategoryMapper;
 import edu.scau.mis.pos.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -14,20 +13,66 @@ import java.util.*;
 public class CategoryServiceImpl implements ICategoryService {
     @Autowired
     private ICategoryMapper categoryMapper;
+
+    /**
+     * 根据ID查询分类
+     */
     @Override
     public Category getCategoryById(Long categoryId) {
         return categoryMapper.selectCategoryById(categoryId);
     }
 
+    /**
+     * 查询所有分类
+     */
     @Override
     public List<Category> getAllCategories() {
-        return categoryMapper.selectAllCategoryList();
+        // 传入空对象 = 查询所有
+        return categoryMapper.selectCategoryList(new Category());
+    }
+
+    /**
+     * 条件查询分类列表
+     */
+    @Override
+    public List<Category> selectCategoryList(Category category) {
+        return categoryMapper.selectCategoryList(category);
+    }
+
+    /**
+     * 新增分类
+     */
+    @Override
+    public int insertCategory(Category category) {
+        return categoryMapper.insertCategory(category);
+    }
+
+    /**
+     * 修改分类
+     */
+    @Override
+    public int updateCategory(Category category) {
+        return categoryMapper.updateCategory(category);
+    }
+
+    /**
+     * 单条删除分类
+     */
+    @Override
+    public int deleteCategoryById(Long categoryId) {
+        return categoryMapper.deleteCategoryById(categoryId);
+    }
+
+    /**
+     * 批量删除分类
+     */
+    @Override
+    public int deleteCategoryByIds(Long[] categoryIds) {
+        return categoryMapper.deleteCategoryByIds(categoryIds);
     }
 
     /**
      * 查询类别树
-     *
-     * @return
      */
     @Override
     public List<CategoryTreeNode> getCategoriesTree() {
