@@ -16,6 +16,7 @@ public class UserController {
     static {
         USERS.put("admin", "123456");
         USERS.put("user", "123456");
+        USERS.put("test", "123");
     }
 
     @PostMapping("/login")

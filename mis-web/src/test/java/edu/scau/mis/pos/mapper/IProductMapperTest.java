@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Rollback(false) // 必需设为false，即测试会更新数据库
+@Rollback(true) // 必需设为false，即测试会更新数据库
 @ContextConfiguration(classes = MisBootApplication.class)
 class IProductMapperTest {
     @Autowired

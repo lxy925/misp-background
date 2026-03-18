@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns: '*'
+            allowed-headers: '*'
+            allowedMethods: '*'
+      routes:
+        - id: mis-web-route
+          uri: lb://mis-web
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 1

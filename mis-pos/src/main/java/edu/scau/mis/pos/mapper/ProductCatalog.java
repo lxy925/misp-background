@@ -1,5 +1,6 @@
 package edu.scau.mis.pos.mapper;
 
+
 import edu.scau.mis.pos.domain.Category;
 import edu.scau.mis.pos.domain.Product;
 import org.springframework.stereotype.Repository;
@@ -80,7 +81,7 @@ public class ProductCatalog implements ICategoryMapper, IProductMapper {
         return PRODUCT_CACHE.values().stream()
                 .filter(product -> Objects.equals(product.getProductId(), productId))
                 .toList()
-                .getFirst();
+                .get(0);
     }
 
     /**
@@ -151,7 +152,7 @@ public class ProductCatalog implements ICategoryMapper, IProductMapper {
      */
     @Override
     public int insertProduct(Product product) {
-        product.setProductId((long) (PRODUCT_CACHE.size()+1));
+        product.setProductId(Long.valueOf((long) (PRODUCT_CACHE.size()+1)));
         product.setCategory(CATEGORY_CACHE.get(product.getProductCategoryId()));
         PRODUCT_CACHE.put(product.getProductSn(),product);
         return 1;

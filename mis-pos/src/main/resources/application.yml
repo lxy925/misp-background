@@ -4,3 +4,5 @@ aliyun:
     accessKeyId: yourAccessKeyId
     accessKeySecret: yourAccessKeySecret
     bucketName: yourBucketName
+mybatis:
+  type-aliases-package: edu.scau.mis.pos.domain

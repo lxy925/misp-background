@@ -1,0 +1,14 @@
+
+#当启动 Gateway服务后，运行在80 端口
+server:
+  port: 80
+#额外加载一个配置文件:加载 application-route.yml
+spring:
+  profiles:
+    include: route
+#微服务名字
+  application:
+    name: mis-gateway
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
