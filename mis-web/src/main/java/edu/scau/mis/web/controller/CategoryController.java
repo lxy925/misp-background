@@ -1,5 +1,6 @@
 package edu.scau.mis.web.controller;
 
+import com.github.pagehelper.PageInfo;
 import edu.scau.mis.common.web.domain.ApiResult;
 import edu.scau.mis.pos.domain.Category;
 import edu.scau.mis.pos.domain.CategoryTreeNode;
@@ -43,11 +44,11 @@ public class CategoryController {
      * 多条件组合查询分类
      * 支持：categoryId、parentId、categoryName、level、state
      */
-    @Operation(summary = "条件查询商品类别")
-    @GetMapping("/list")
-    public ApiResult<List<Category>> list(Category category) {
-        List<Category> list = categoryService.selectCategoryList(category);
-        return ApiResult.success(list);
+    @Operation(summary = "分页条件查询商品分类")
+    @PostMapping("/list")
+    public ApiResult<PageInfo<Category>> list(@RequestBody Category category) {
+        PageInfo<Category> pageInfo = categoryService.selectCategoryList(category);
+        return ApiResult.success(pageInfo);
     }
 
     /**

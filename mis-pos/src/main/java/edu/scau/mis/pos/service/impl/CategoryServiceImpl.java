@@ -1,5 +1,7 @@
 package edu.scau.mis.pos.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import edu.scau.mis.pos.domain.Category;
 import edu.scau.mis.pos.domain.CategoryTreeNode;
 import edu.scau.mis.pos.mapper.ICategoryMapper;
@@ -30,14 +32,26 @@ public class CategoryServiceImpl implements ICategoryService {
         // 传入空对象 = 查询所有
         return categoryMapper.selectCategoryList(new Category());
     }
-
     /**
-     * 条件查询分类列表
+     * 条件+分页查询分类列表
      */
     @Override
-    public List<Category> selectCategoryList(Category category) {
-        return categoryMapper.selectCategoryList(category);
+    public PageInfo<Category> selectCategoryList(Category category) {
+        // 分页（不传默认第1页，10条）
+        Integer pageNum = category.getPageNum() == null ? 1 : category.getPageNum();
+        Integer pageSize = category.getPageSize() == null ? 10 : category.getPageSize();
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<Category> list = categoryMapper.selectCategoryList(category);
+        return new PageInfo<>(list);
     }
+//    /**
+//     * 条件查询分类列表
+//     */
+//    @Override
+//    public List<Category> selectCategoryList(Category category) {
+//        return categoryMapper.selectCategoryList(category);
+//    }
 
     /**
      * 新增分类
@@ -82,7 +96,12 @@ public class CategoryServiceImpl implements ICategoryService {
         }
         Map<Long, CategoryTreeNode> nodeMap = new HashMap<>();
         for (Category category : allCategories) {
-            CategoryTreeNode node = new CategoryTreeNode(category.getCategoryId(), category.getCategoryName());
+            // 关键：把完整Category字段赋值给TreeNode
+            CategoryTreeNode node = new CategoryTreeNode(category);
+            node.setParentId(category.getParentId());
+            node.setLevel(category.getLevel());
+            node.setPath(category.getPath());
+            node.setState(category.getState());
             nodeMap.put(category.getCategoryId(), node);
         }
         List<CategoryTreeNode> rootNodes = new ArrayList<>();
@@ -116,7 +135,8 @@ public class CategoryServiceImpl implements ICategoryService {
         if (nodes == null || nodes.isEmpty()) {
             return;
         }
-        nodes.sort(Comparator.comparing(CategoryTreeNode::getValue));
+        // 修复：按 categoryId 排序，不是 getValue()
+        nodes.sort(Comparator.comparing(CategoryTreeNode::getCategoryId));
         for (CategoryTreeNode node : nodes) {
             sortTree(node.getChildren());
         }

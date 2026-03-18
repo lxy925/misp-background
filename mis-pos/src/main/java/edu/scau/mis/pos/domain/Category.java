@@ -21,5 +21,9 @@ public class Category extends BaseEntity implements Serializable {
     private String path;
     @Schema(description = "商品类别上架状态，true已上架false未上架")
     private Boolean state;
+    @Schema(description = "页码")
+    private Integer pageNum;
 
+    @Schema(description = "每页条数")
+    private Integer pageSize;
 }
