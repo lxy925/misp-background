@@ -3,10 +3,12 @@ package edu.scau.mis.common.oss.config;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@ConditionalOnProperty(name = "aliyun.oss.access-key-id")
 public class OssConfig {
     @Autowired
     private OssProperties ossProperties;

@@ -1,10 +1,11 @@
-package edu.scau.mis.web.controller;
+package edu.scau.mis.product.controller;
+
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import edu.scau.mis.common.web.domain.ApiResult;
-import edu.scau.mis.pos.domain.Product;
-import edu.scau.mis.pos.service.IProductService;
+import edu.scau.mis.product.domain.Product;
+import edu.scau.mis.product.service.IProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -15,7 +16,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @RestController

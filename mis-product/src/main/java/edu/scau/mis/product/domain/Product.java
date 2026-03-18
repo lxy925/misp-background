@@ -1,4 +1,5 @@
-package edu.scau.mis.pos.domain;
+package edu.scau.mis.product.domain;
+
 
 import edu.scau.mis.common.domain.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

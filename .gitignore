@@ -37,3 +37,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### 本地环境配置，不提交 ###
+**/application-dev.yml

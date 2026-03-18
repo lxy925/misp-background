@@ -14,6 +14,7 @@
         <module>mis-web</module>
         <module>mis-gateway</module>
         <module>mis-user</module>
+        <module>mis-product</module>
     </modules>
 
     <properties>

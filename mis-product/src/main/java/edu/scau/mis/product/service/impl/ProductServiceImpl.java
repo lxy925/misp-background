@@ -1,10 +1,11 @@
-package edu.scau.mis.pos.service.impl;
+package edu.scau.mis.product.service.impl;
+
 
 import edu.scau.mis.common.exception.ServiceException;
 import edu.scau.mis.common.web.domain.HttpCode;
-import edu.scau.mis.pos.domain.Product;
-import edu.scau.mis.pos.mapper.IProductMapper;
-import edu.scau.mis.pos.service.IProductService;
+import edu.scau.mis.product.domain.Product;
+import edu.scau.mis.product.mapper.IProductMapper;
+import edu.scau.mis.product.service.IProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

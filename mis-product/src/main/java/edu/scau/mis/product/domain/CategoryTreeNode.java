@@ -1,8 +1,9 @@
-package edu.scau.mis.pos.domain;
+package edu.scau.mis.product.domain;
 
 import lombok.Data;
 
 import java.util.List;
+
 @Data
 public class CategoryTreeNode {
     private Long value;

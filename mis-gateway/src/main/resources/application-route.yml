@@ -14,4 +14,20 @@ spring:
             - Path=/api/**
           filters:
             - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 3
+        - id: mis-user-route
+          uri: lb://mis-user
+          predicates:
+            - name: Path
+              args:
+                patterns: /api/user/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
           order: 1
+        - id: mis-product-route
+          uri: lb://mis-product
+          predicates:
+            - Path=/api/product/**,/api/category/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 2

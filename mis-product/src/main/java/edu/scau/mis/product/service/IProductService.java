@@ -1,6 +1,6 @@
-package edu.scau.mis.pos.service;
+package edu.scau.mis.product.service;
 
-import edu.scau.mis.pos.domain.Product;
+import edu.scau.mis.product.domain.Product;
 
 import java.util.List;
 

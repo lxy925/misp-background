@@ -1,6 +1,7 @@
-package edu.scau.mis.pos.mapper;
+package edu.scau.mis.product.mapper;
 
-import edu.scau.mis.pos.domain.Product;
+
+import edu.scau.mis.product.domain.Product;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Primary;

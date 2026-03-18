@@ -1,10 +1,10 @@
-package edu.scau.mis.web.controller;
+package edu.scau.mis.user.controller;
 
 import edu.scau.mis.common.web.domain.ApiResult;
-import edu.scau.mis.web.dto.LoginUser;
+import edu.scau.mis.user.domain.LoginUser;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.concurrent.ConcurrentHashMap;

@@ -1,4 +1,4 @@
-package edu.scau.mis.pos.domain;
+package edu.scau.mis.product.domain;
 import edu.scau.mis.common.domain.BaseEntity;
 
 import java.io.Serializable;

@@ -1,7 +1,8 @@
-package edu.scau.mis.pos.service;
+package edu.scau.mis.product.service;
 
-import edu.scau.mis.pos.domain.Category;
-import edu.scau.mis.pos.domain.CategoryTreeNode;
+
+import edu.scau.mis.product.domain.Category;
+import edu.scau.mis.product.domain.CategoryTreeNode;
 
 import java.util.List;
 

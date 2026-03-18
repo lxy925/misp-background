@@ -1,9 +1,10 @@
-package edu.scau.mis.web.controller;
+package edu.scau.mis.product.controller;
+
 
 import edu.scau.mis.common.web.domain.ApiResult;
-import edu.scau.mis.pos.domain.Category;
-import edu.scau.mis.pos.domain.CategoryTreeNode;
-import edu.scau.mis.pos.service.ICategoryService;
+import edu.scau.mis.product.domain.Category;
+import edu.scau.mis.product.domain.CategoryTreeNode;
+import edu.scau.mis.product.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

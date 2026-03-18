@@ -1,4 +1,4 @@
-package edu.scau.mis.web.dto;
+package edu.scau.mis.user.domain;
 
 import lombok.Data;
 

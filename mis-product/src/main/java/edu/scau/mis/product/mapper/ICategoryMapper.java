@@ -1,13 +1,13 @@
-package edu.scau.mis.pos.mapper;
+package edu.scau.mis.product.mapper;
 
-import edu.scau.mis.pos.domain.Category;
+
+import edu.scau.mis.product.domain.Category;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.context.annotation.Primary;
 
 import java.util.List;
+
 @Mapper
-@Primary
 public interface ICategoryMapper {
     /**
      * 根据ID查询产品分类

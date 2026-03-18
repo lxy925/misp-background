@@ -1,11 +1,11 @@
-package edu.scau.mis.pos.service.impl;
+package edu.scau.mis.product.service.impl;
 
-import edu.scau.mis.pos.domain.Category;
-import edu.scau.mis.pos.domain.CategoryTreeNode;
-import edu.scau.mis.pos.mapper.ICategoryMapper;
-import edu.scau.mis.pos.service.ICategoryService;
+
+import edu.scau.mis.product.domain.Category;
+import edu.scau.mis.product.domain.CategoryTreeNode;
+import edu.scau.mis.product.mapper.ICategoryMapper;
+import edu.scau.mis.product.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
