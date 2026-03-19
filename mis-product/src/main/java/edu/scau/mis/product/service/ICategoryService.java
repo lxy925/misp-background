@@ -1,6 +1,6 @@
 package edu.scau.mis.product.service;
 
-
+import com.github.pagehelper.PageInfo;
 import edu.scau.mis.product.domain.Category;
 import edu.scau.mis.product.domain.CategoryTreeNode;
 
@@ -25,4 +25,14 @@ public interface ICategoryService {
      */
 
     List<CategoryTreeNode> getCategoriesTree();
+
+    PageInfo<Category> selectCategoryList(Category category);
+
+    int insertCategory(Category category);
+
+    int updateCategory(Category category);
+
+    int deleteCategoryById(Long categoryId);
+
+    int deleteCategoryByIds(Long[] categoryIds);
 }
