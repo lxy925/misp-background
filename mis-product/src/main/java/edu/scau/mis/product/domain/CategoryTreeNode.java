@@ -1,5 +1,6 @@
 package edu.scau.mis.product.domain;
 
+import edu.scau.mis.product.domain.Category;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import java.util.List;

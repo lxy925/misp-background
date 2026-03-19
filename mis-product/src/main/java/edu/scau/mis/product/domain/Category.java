@@ -1,13 +1,12 @@
 package edu.scau.mis.product.domain;
-
 import edu.scau.mis.common.domain.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.io.Serializable;
 
-@Schema(description = "商品类别传输对象")
+import java.io.Serializable;
 @Data
+@Schema(description = "商品类别传输对象")
 public class Category extends BaseEntity implements Serializable {
 
     @Schema(description = "商品类别ID")

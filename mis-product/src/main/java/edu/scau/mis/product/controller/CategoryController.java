@@ -1,10 +1,11 @@
-package edu.scau.mis.web.controller;
+package edu.scau.mis.product.controller;
+
 
 import com.github.pagehelper.PageInfo;
 import edu.scau.mis.common.web.domain.ApiResult;
-import edu.scau.mis.pos.domain.Category;
-import edu.scau.mis.pos.domain.CategoryTreeNode;
-import edu.scau.mis.pos.service.ICategoryService;
+import edu.scau.mis.product.domain.Category;
+import edu.scau.mis.product.domain.CategoryTreeNode;
+import edu.scau.mis.product.service.ICategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
