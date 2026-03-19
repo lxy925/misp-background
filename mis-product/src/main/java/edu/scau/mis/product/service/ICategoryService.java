@@ -1,8 +1,8 @@
-package edu.scau.mis.product.service;
+package edu.scau.mis.pos.service;
 
 import com.github.pagehelper.PageInfo;
-import edu.scau.mis.product.domain.Category;
-import edu.scau.mis.product.domain.CategoryTreeNode;
+import edu.scau.mis.pos.domain.Category;
+import edu.scau.mis.pos.domain.CategoryTreeNode;
 
 import java.util.List;
 

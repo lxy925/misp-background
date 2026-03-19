@@ -29,7 +29,7 @@ class ICategoryMapperTest {
 
     @Test
     void selectAllCategoryList() {
-        List<Category> categories = categoryMapper.selectAllCategoryList();
+        List<Category> categories = categoryMapper.selectCategoryList(new Category());
         assertEquals(3, categories.size());
     }
 }
