@@ -1,36 +1,24 @@
 package edu.scau.mis.product.domain;
 
-
-import edu.scau.mis.common.domain.BaseEntity;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Schema(description = "商品传输对象")
-public class Product extends BaseEntity implements Serializable {
-    @Schema(description = "商品ID")
+@Schema(description = "商品对象（粗）")
+public class Product {
     private Long productId;
-    @Schema(description = "商品编号")
     private String productSn;
-    @Schema(description = "商品名称")
     private String productName;
-    @Schema(description = "商品描述")
-    private String productDescription;
-    @Schema(description = "商品价格")
-    private BigDecimal price;
-    @Schema(description = "类别ID")
-    private Long productCategoryId;
-    @Schema(description = "类别")
-    private Category category;
-    @Schema(description = "主图URL")
-    private String imageUrl;
-    @Schema(description = "详情URL")
-    private String detailUrl;
+    private Long categoryId;
+    private BigDecimal displayPrice;
+    private String productDesc;
+    private String mainImage;
+    private String detailImages;    // JSON 字符串
+    private Integer productStock;
+    private String productStatus;   // onsale / offshelf
+    private String stockStatus;     // normal / running_low / out_of_stock
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
 }
