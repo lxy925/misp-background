@@ -27,7 +27,7 @@ spring:
         - id: mis-product-route
           uri: lb://mis-product
           predicates:
-            - Path=/api/product/**,/api/category/**
+            - Path=/api/product/**,/api/category/**,/api/oss/**
           filters:
             - RewritePath=/api/?(?<segment>.*), /$\{segment}
           order: 2

@@ -25,10 +25,3 @@ mybatis:
     # 例如 ProductStatus.active ↔ 数据库里的 'active'
     default-enum-type-handler: org.apache.ibatis.type.EnumTypeHandler
 
-#阿里云oss配置
-aliyun:
-  oss:
-    endpoint: http://oss-cn-hangzhou.aliyuncs.com
-    accessKeyId: yourAccessKeyId
-    accessKeySecret: yourAccessKeySecret
-    bucketName: yourBucketName

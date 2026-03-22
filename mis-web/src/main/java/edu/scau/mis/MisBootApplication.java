@@ -16,5 +16,6 @@ public class MisBootApplication {
          */
 
          SpringApplication.run(MisBootApplication.class, args);
+
     }
 }
