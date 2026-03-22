@@ -59,7 +59,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete")
-    public ApiResult<Void> deleteBatch(@RequestParam Long[] productIds) {
+    public ApiResult<Void> deleteBatch(@RequestParam(name = "productIds") Long[] productIds) {
         productService.deleteProductByIds(productIds);
         return ApiResult.success();
     }
