@@ -8,13 +8,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class OssConfig {
+
     @Autowired
     private OssProperties ossProperties;
+
+    /**
+     * 初始化OSS客户端，交给Spring管理
+     */
     @Bean
     public OSS ossClient() {
         return new OSSClientBuilder().build(
                 ossProperties.getEndpoint(),
                 ossProperties.getAccessKeyId(),
-                ossProperties.getAccessKeySecret());
+                ossProperties.getAccessKeySecret()
+        );
     }
 }

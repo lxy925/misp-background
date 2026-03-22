@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.scau.mis.pos.mapper.ICategoryMapper">
+
+    <resultMap type="Category" id="categoryResultMap">
+        <id property="categoryId" column="category_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="categoryName" column="category_name"/>
+        <result property="level" column="level"/>
+        <result property="path" column="path"/>
+        <result property="state" column="state"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <!-- 新增商品分类 -->
+    <insert id="insertCategory" parameterType="Category" useGeneratedKeys="true" keyProperty="categoryId">
+        INSERT INTO pos_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">parent_id,</if>
+            <if test="categoryName != null">category_name,</if>
+            <if test="level != null">level,</if>
+            <if test="path != null">path,</if>
+            <if test="state != null">state,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="parentId != null">#{parentId},</if>
+            <if test="categoryName != null">#{categoryName},</if>
+            <if test="level != null">#{level},</if>
+            <if test="path != null">#{path},</if>
+            <if test="state != null">#{state},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+        </trim>
+    </insert>
+
+    <!-- 根据ID查询分类 -->
+    <select id="selectCategoryById" parameterType="Long" resultMap="categoryResultMap">
+        SELECT category_id, parent_id, category_name, level, path, state,
+               create_by, create_time, update_by, update_time
+        FROM pos_category
+        WHERE category_id = #{categoryId}
+    </select>
+
+    <!-- 条件查询分类列表 -->
+    <select id="selectCategoryList" parameterType="Category" resultMap="categoryResultMap">
+        SELECT category_id, parent_id, category_name, level, path, state,
+        create_by, create_time, update_by, update_time
+        FROM pos_category
+        <where>
+            <if test="categoryId != null">AND category_id = #{categoryId}</if>
+            <if test="parentId != null">AND parent_id = #{parentId}</if>
+            <if test="categoryName != null">AND category_name LIKE concat('%', #{categoryName}, '%')</if>
+            <if test="level != null">AND level = #{level}</if>
+            <if test="state != null">AND state = #{state}</if>
+        </where>
+    </select>
+
+    <!-- 修改商品分类 -->
+    <update id="updateCategory" parameterType="Category">
+        UPDATE pos_category
+        <trim prefix="set" suffixOverrides=",">
+            <if test="parentId != null">parent_id = #{parentId},</if>
+            <if test="categoryName != null">category_name = #{categoryName},</if>
+            <if test="level != null">level = #{level},</if>
+            <if test="path != null">path = #{path},</if>
+            <if test="state != null">state = #{state},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        WHERE category_id = #{categoryId}
+    </update>
+
+    <!-- 根据ID删除分类 + 级联删除所有子节点 -->
+    <delete id="deleteCategoryById" parameterType="Long">
+        DELETE FROM pos_category
+        WHERE category_id = #{categoryId}
+           OR parent_id = #{categoryId}
+           OR path LIKE CONCAT('%', ',', #{categoryId}, ',%')
+           OR path LIKE CONCAT('%', ',', #{categoryId})
+           OR path LIKE CONCAT(#{categoryId}, ',%')
+    </delete>
+    <!-- 批量删除分类 + 级联删除所有子节点 -->
+    <delete id="deleteCategoryByIds">
+        DELETE FROM pos_category
+        WHERE category_id IN
+        <foreach collection="array" item="cid" open="(" separator="," close=")">
+            #{cid}
+        </foreach>
+        OR parent_id IN
+        <foreach collection="array" item="cid" open="(" separator="," close=")">
+            #{cid}
+        </foreach>
+        OR (
+        <foreach collection="array" item="cid" separator="OR">
+            path LIKE CONCAT('%', ',', #{cid}, ',%')
+            OR path LIKE CONCAT('%', ',', #{cid})
+            OR path LIKE CONCAT(#{cid}, ',%')
+        </foreach>
+        )
+    </delete>
+
+</mapper>

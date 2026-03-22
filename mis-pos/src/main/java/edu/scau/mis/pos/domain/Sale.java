@@ -18,7 +18,6 @@ public class Sale extends BaseEntity implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date saleTime;
     private String status;
-    private List<SaleItem> saleItems = new ArrayList<>();
     private Payment payment;
     private Long paymentId;
     private String delFlag;

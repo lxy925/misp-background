@@ -22,6 +22,8 @@
 8. Swagger测试接口：访问http://localhost:8081/swagger-ui/index.html
 9. Knife4j测试接口：访问http://localhost:8081/doc.html
 10. 项目未配置Redis, 可自行配置。如需配置参考ISDP课程ch08实践任务参考。
+11. 因为该项目使用了多模块运行，所以需要先cd "D:\nacos\bin"，然后.\startup.cmd -m standalone启动nacos，之后先运行GatewayApplication后再运行所需模块
+12. 使用oss云上传需要先解开配置文件的aliyun.oss配置
 
 ## 开发规范与指导
 

@@ -34,6 +34,9 @@ public class ApiResult<T> {
         return new ApiResult<>(HttpCode.SUCCESS.getCode(), message, data);
     }
 
+    public static <T> ApiResult<T> success() {
+        return new ApiResult<>(HttpCode.SUCCESS.getCode(), HttpCode.SUCCESS.getMessage(), null);
+    }
     // 静态工厂方法：创建成功（201）
     public static <T> ApiResult<T> created(T data) {
         return new ApiResult<>(HttpCode.CREATED.getCode(), HttpCode.CREATED.getMessage(), data);

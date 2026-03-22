@@ -1,0 +1,37 @@
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origin-patterns: '*'
+            allowed-headers: '*'
+            allowedMethods: '*'
+      routes:
+        - id: mis-web-route
+          uri: lb://mis-web
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 3
+        - id: mis-user-route
+          uri: lb://mis-user
+          predicates:
+            - name: Path
+              args:
+                patterns: /api/user/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 1
+        - id: mis-product-route
+          uri: lb://mis-product
+          predicates:
+            - Path=/api/product/**,/api/category/**,/api/oss/**
+          filters:
+            - RewritePath=/api/?(?<segment>.*), /$\{segment}
+          order: 2
+        - id: product-swagger
+          uri: http://localhost:8083
+          predicates:
+            - Path=/v3/api-docs/**,/swagger-ui/**,/swagger-ui.html,/doc.html

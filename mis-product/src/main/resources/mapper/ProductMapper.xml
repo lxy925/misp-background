@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.scau.mis.product.mapper.IProductMapper">
+
+    <resultMap id="productResultMap" type="Product">
+        <id property="productId" column="product_id"/>
+        <id property="productSn" column="product_Sn"/>
+        <result property="productName" column="product_name"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="displayPrice" column="display_price"/>
+        <result property="productDesc" column="product_desc"/>
+        <result property="mainImage" column="main_image"/>
+        <result property="detailImages" column="detail_images"/>
+        <result property="productStock" column="product_stock"/>
+        <result property="productStatus" column="product_status"/>
+        <result property="stockStatus" column="stock_status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectProductById" parameterType="Long" resultMap="productResultMap">
+        SELECT * FROM pet_product WHERE product_id = #{productId}
+    </select>
+
+    <select id="selectProductBySn" parameterType="String" resultMap="productResultMap">
+        SELECT * FROM pet_product WHERE product_sn = #{productSn}
+    </select>
+
+    <select id="selectProductList" parameterType="Product" resultMap="productResultMap">
+        SELECT * FROM pet_product
+        <where>
+            <if test="productName != null and productName != ''">
+                AND product_name LIKE concat('%', #{productName}, '%')
+            </if>
+            <if test="categoryId != null">
+                AND category_id = #{categoryId}
+            </if>
+            <if test="productStatus != null and productStatus != ''">
+                AND product_status = #{productStatus}
+            </if>
+            <if test="stockStatus != null and stockStatus != ''">
+                AND stock_status = #{stockStatus}
+            </if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="selectPageList" resultType="edu.scau.mis.product.domain.Product">
+        select * from pet_product
+        <where>
+        <!-- 商品名称模糊 -->
+        <if test="productName != null and productName != ''">
+            AND product_name LIKE CONCAT('%', #{productName}, '%')
+        </if>
+        <if test="productSn !=null and productSn != ''">
+            AND product_sn = #{productSn}
+        </if>
+        <if test="categoryIds != null and !categoryIds.isEmpty()">
+            AND category_id IN
+            <foreach collection="categoryIds" item="cid" open="(" separator="," close=")">
+                #{cid}
+            </foreach>
+        </if>
+        </where>
+        ORDER BY category_id ASC, product_id DESC
+    </select>
+
+    <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="productId">
+        INSERT INTO pet_product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productName != null">product_name,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="displayPrice != null">display_price,</if>
+            <if test="productDesc != null">product_desc,</if>
+            <if test="mainImage != null">main_image,</if>
+            <if test="detailImages != null">detail_images,</if>
+            <if test="productStock != null">product_stock,</if>
+            <if test="productStatus != null">product_status,</if>
+            <if test="stockStatus != null">stock_status,</if>
+            create_time,
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productName != null">#{productName},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="displayPrice != null">#{displayPrice},</if>
+            <if test="productDesc != null">#{productDesc},</if>
+            <if test="mainImage != null">#{mainImage},</if>
+            <if test="detailImages != null">#{detailImages},</if>
+            <if test="productStock != null">#{productStock},</if>
+            <if test="productStatus != null">#{productStatus},</if>
+            <if test="stockStatus != null">#{stockStatus},</if>
+            NOW(),
+        </trim>
+    </insert>
+
+    <update id="updateProduct" parameterType="Product">
+        UPDATE pet_product
+        <trim prefix="set" suffixOverrides=",">
+            <if test="productName != null">product_name = #{productName},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="displayPrice != null">display_price = #{displayPrice},</if>
+            <if test="productDesc != null">product_desc = #{productDesc},</if>
+            <if test="mainImage != null">main_image = #{mainImage},</if>
+            <if test="detailImages != null">detail_images = #{detailImages},</if>
+            <if test="productStock != null">product_stock = #{productStock},</if>
+            <if test="productStatus != null">product_status = #{productStatus},</if>
+            <if test="stockStatus != null">stock_status = #{stockStatus},</if>
+            update_time = NOW(),
+        </trim>
+        WHERE product_id = #{productId}
+    </update>
+
+    <delete id="deleteProductById" parameterType="Long">
+        DELETE FROM pet_product WHERE product_id = #{productId}
+    </delete>
+
+    <delete id="deleteProductByIds">
+        DELETE FROM pet_product WHERE product_id IN
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
